@@ -151,15 +151,6 @@
             margin-bottom: 8px;
         }
 
-        code {
-            background: #f0f0f0;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            color: #d63384;
-            font-weight: 600;
-        }
-
         .features {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -237,11 +228,11 @@
         </div>
 
         <div class="button-group">
-            <button class="btn btn-gui" onclick="launchLocal()">
+            <button class="btn btn-gui" onclick="launchGUI()">
                 🖥️ Launch GUI Application
             </button>
-            <button class="btn btn-cli" onclick="getIP()">
-                📱 Access from Phone
+            <button class="btn btn-cli" onclick="launchCLI()">
+                ⌨️ Launch Command Line Interface
             </button>
         </div>
 
@@ -269,43 +260,39 @@
         </div>
 
         <div class="info-box">
-            <h3>🚀 How to Run Locally</h3>
-            <ul>
-                <li><strong>Step 1:</strong> Clone the repository from GitHub</li>
-                <li><strong>Step 2:</strong> Open terminal in project folder</li>
-                <li><strong>Step 3:</strong> Run: <code>node server.js</code></li>
-                <li><strong>Step 4:</strong> Open browser to <code>http://localhost:5500</code></li>
-                <li><strong>Step 5:</strong> Click "Launch GUI Application" button</li>
-            </ul>
-        </div>
-
-        <div class="info-box">
             <h3>✨ Features</h3>
             <ul>
                 <li>Professional Swing GUI with 3 tabbed panels</li>
                 <li>Real-time data display with tables</li>
                 <li>Automatic data persistence to library.dat</li>
                 <li>Auto-save functionality every 10 seconds</li>
+                <li>Form validation and error handling</li>
+                <li>Responsive and user-friendly interface</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Library Management System © 2025</p>
+            <p>Built with Java Swing Framework</p>
+        </footer>
+    </div>
+
     <script>
-        function launchLocal() {
-            try {
-                // Try to launch via local Node.js server on port 5500
-                fetch('http://localhost:5500/launch-gui', { mode: 'no-cors' })
-                    .then(response => {
-                        alert('✅ GUI Application Launching!\n\nThe Library Management System interface is starting...');
-                    })
-                    .catch(error => {
-                        alert('⚠️  Error launching application.\n\nSteps to run locally:\n\n1. Open terminal/command prompt\n2. Navigate to project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch GUI Application" button');
-                    });
-            } catch(error) {
-                alert('⚠️  Error launching application.\n\nSteps to run locally:\n\n1. Open terminal/command prompt\n2. Navigate to project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch GUI Application" button');
-            }
+        function launchGUI() {
+            fetch('http://localhost:5500/launch-gui')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('✅ GUI Launch Response:', data);
+                    alert('✅ GUI Application Launched!\n\nThe Library Management System interface is starting...');
+                })
+                .catch(error => {
+                    console.error('❌ Launch failed:', error);
+                    alert('⚠️  Error launching application.\n\nMake sure:\n1. Node.js server is running (node server.js)\n2. You\'re accessing http://localhost:5500');
+                });
         }
 
-        function getIP() {
-            alert('📱 To Access from Phone:\n\n1. Open Command Prompt on your computer\n2. Run: ipconfig\n3. Find your IPv4 Address (e.g., 192.168.x.x)\n4. On phone, open browser: http://[YOUR_IP]:5500\n\nNote: Your computer and phone must be on the same WiFi network');
-        }
-    </script>etch('http://localhost:5500/launch-cli')
+        function launchCLI() {
+            fetch('http://localhost:5500/launch-cli')
                 .then(response => response.json())
                 .then(data => {
                     console.log('✅ CLI Launch Response:', data);
@@ -317,7 +304,5 @@
                 });
         }
     </script>
-</body>
-</html>
 </body>
 </html>
