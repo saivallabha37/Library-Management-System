@@ -25,8 +25,6 @@ const server = http.createServer((req, res) => {
     
     if (req.url === '/launch-gui' && req.method === 'GET') {
         try {
-    if (req.url === '/launch-gui' && req.method === 'GET') {
-        try {
             const gui = spawn('javaw.exe', ['library.LibraryAppGUI'], {
                 cwd: __dirname,
                 detached: true,
@@ -41,7 +39,7 @@ const server = http.createServer((req, res) => {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ status: 'Error', error: err.message }));
         }
-    }   try {
+    }
     else if (req.url === '/launch-cli' && req.method === 'GET') {
         try {
             const cli = spawn('java.exe', ['library.LibraryApp'], {
@@ -56,13 +54,15 @@ const server = http.createServer((req, res) => {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ status: 'Error', error: err.message }));
         }
-    }   try {
+    }
+    else if (req.url === '/' || req.url === '/index.html') {
+        try {
             const indexPath = path.join(__dirname, 'index.html');
             const indexContent = fs.readFileSync(indexPath, 'utf-8');
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(indexContent);
         } catch(err) {
-            console.error('❌ Error reading index.html:', err);
+            console.error('Error reading index.html:', err);
             res.writeHead(500, { 'Content-Type': 'text/html' });
             res.end('<h1>Error loading page</h1>');
         }
@@ -73,8 +73,6 @@ const server = http.createServer((req, res) => {
     }
 });
 
-const PORT = 5500;
-server.listen(PORT, '0.0.0.0', () => {
 const PORT = 5500;
 server.listen(PORT, '0.0.0.0', () => {
     console.log('Server running at http://localhost:' + PORT);
