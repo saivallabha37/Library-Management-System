@@ -117,6 +117,20 @@
             transform: translateY(-1px);
         }
 
+        .btn-repo {
+            background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+            color: white;
+        }
+
+        .btn-repo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(111, 66, 193, 0.4);
+        }
+
+        .btn-repo:active {
+            transform: translateY(-1px);
+        }
+
         .info-box {
             background: #e8f4f8;
             border-radius: 8px;
@@ -234,6 +248,9 @@
             <button class="btn btn-cli" onclick="launchCLI()">
                 ⌨️ Launch Command Line Interface
             </button>
+            <button class="btn btn-repo" onclick="goToRepo()">
+                🔗 View on GitHub
+            </button>
         </div>
 
         <div class="features">
@@ -282,23 +299,27 @@
             // Check if we're on GitHub Pages
             if (window.location.hostname === 'saivallabha37.github.io') {
                 alert('📝 Instructions for Running Locally:\n\n1. Download the project from GitHub\n2. Open terminal in project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch GUI Application" button');
+        function launchCLI() {
+            // Check if we're on GitHub Pages
+            if (window.location.hostname === 'saivallabha37.github.io') {
+                alert('📝 Instructions for Running Locally:\n\n1. Download the project from GitHub\n2. Open terminal in project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch Command Line Interface" button');
                 return;
             }
             
             // If running locally, call the server
-            fetch('http://localhost:5500/launch-gui')
+            fetch('http://localhost:5500/launch-cli')
                 .then(response => response.json())
                 .then(data => {
-                    alert('✅ GUI Application Launched!\n\nThe Library Management System interface is starting...');
+                    alert('✅ CLI Application Launched!\n\nThe command-line interface will open in a new window...');
                 })
                 .catch(error => {
                     alert('⚠️  Error launching application.\n\nMake sure:\n1. Node.js server is running (node server.js)\n2. You\'re accessing http://localhost:5500');
                 });
         }
 
-        function launchCLI() {
-            // Check if we're on GitHub Pages
-            if (window.location.hostname === 'saivallabha37.github.io') {
+        function goToRepo() {
+            window.open('https://github.com/saivallabha37/Library-Management-System', '_blank');
+        }   if (window.location.hostname === 'saivallabha37.github.io') {
                 alert('📝 Instructions for Running Locally:\n\n1. Download the project from GitHub\n2. Open terminal in project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch Command Line Interface" button');
                 return;
             }
