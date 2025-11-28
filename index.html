@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #194C8C;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .library-info {
+            background: #f8f9fa;
+            border-left: 5px solid #194C8C;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .library-info p {
+            color: #333;
+            font-size: 1em;
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .library-info strong {
+            color: #194C8C;
+            font-weight: 600;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .btn-gui {
+            background: linear-gradient(135deg, #4682B4 0%, #36648B 100%);
+            color: white;
+        }
+
+        .btn-gui:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(70, 130, 180, 0.4);
+        }
+
+        .btn-gui:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-cli {
+            background: linear-gradient(135deg, #228B22 0%, #1a6b1a 100%);
+            color: white;
+        }
+
+        .btn-cli:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(34, 139, 34, 0.4);
+        }
+
+        .btn-cli:active {
+            transform: translateY(-1px);
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 2px solid #4682B4;
+        }
+
+        .info-box h3 {
+            color: #194C8C;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .info-box ul {
+            list-style-position: inside;
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.8;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #4682B4;
+            box-shadow: 0 5px 15px rgba(70, 130, 180, 0.2);
+        }
+
+        .feature-card h4 {
+            color: #194C8C;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Library Management System</h1>
+        <p class="subtitle">Dr. Sarvepalli Radhakrishnan Library</p>
+
+        <div class="library-info">
+            <p><strong>Location:</strong> Vasavi College of Engineering</p>
+            <p><strong>Project Type:</strong> Java Swing Desktop Application</p>
+            <p><strong>Features:</strong> Book Management, Member Registration, Transaction Tracking</p>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-gui" onclick="launchGUI()">
+                🖥️ Launch GUI Application
+            </button>
+            <button class="btn btn-cli" onclick="launchCLI()">
+                ⌨️ Launch Command Line Interface
+            </button>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">📖</div>
+                <h4>Book Management</h4>
+                <p>Add, remove, and track books in the library system</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">👥</div>
+                <h4>Member Management</h4>
+                <p>Register and manage library members</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📝</div>
+                <h4>Transactions</h4>
+                <p>Track book borrowing and returns</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">💾</div>
+                <h4>Data Persistence</h4>
+                <p>Auto-save and file-based storage</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>✨ Features</h3>
+            <ul>
+                <li>Professional Swing GUI with 3 tabbed panels</li>
+                <li>Real-time data display with tables</li>
+                <li>Automatic data persistence to library.dat</li>
+                <li>Auto-save functionality every 10 seconds</li>
+                <li>Form validation and error handling</li>
+                <li>Responsive and user-friendly interface</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Library Management System © 2025</p>
+            <p>Built with Java Swing Framework</p>
+        </footer>
+    </div>
+
+    <script>
+        function launchGUI() {
+            // Launch via Node.js server on port 5500
+            fetch('http://localhost:5500/launch-gui')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('✅ GUI Launch Response:', data);
+                    alert('✅ GUI Application Launched!\n\nThe Library Management System interface is starting...');
+                })
+                .catch(error => {
+                    console.error('❌ Launch failed:', error);
+                    alert('⚠️  Error launching application.\n\nMake sure:\n1. Node.js server is running (node server.js)\n2. You\'re accessing http://localhost:5500');
+                });
+        }
+
+        function launchCLI() {
+            // Launch via Node.js server on port 5500
+            fetch('http://localhost:5500/launch-cli')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('✅ CLI Launch Response:', data);
+                    alert('✅ CLI Application Launched!\n\nThe command-line interface will open in a new window...');
+                })
+                .catch(error => {
+                    console.error('❌ Launch failed:', error);
+                    alert('⚠️  Error launching application.\n\nMake sure:\n1. Node.js server is running (node server.js)\n2. You\'re accessing http://localhost:5500');
+                });
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>
