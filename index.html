@@ -209,6 +209,7 @@
             border-top: 2px solid #f0f0f0;
             color: #999;
             font-size: 0.9em;
+            text-align: center;
         }
 
         @media (max-width: 600px) {
@@ -295,44 +296,36 @@
     </div>
 
     <script>
+        const BACKEND_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
+            ? 'http://localhost:5500' 
+            : window.location.origin;
+
         function launchGUI() {
-            // Check if we're on GitHub Pages
             if (window.location.hostname === 'saivallabha37.github.io') {
-                alert('📝 Instructions for Running Locally:\n\n1. Download the project from GitHub\n2. Open terminal in project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch GUI Application" button');
-        function launchCLI() {
-            // Check if we're on GitHub Pages
-            if (window.location.hostname === 'saivallabha37.github.io') {
-                alert('📝 Instructions for Running Locally:\n\n1. Download the project from GitHub\n2. Open terminal in project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch Command Line Interface" button');
+                alert('📝 Quick Start:\n\n1. Clone repo: git clone https://github.com/saivallabha37/Library-Management-System\n2. Install Node.js if needed\n3. Run: npm install\n4. Start server: node server.js\n5. Open: http://localhost:5500\n6. Click buttons to launch!');
                 return;
             }
             
-            // If running locally, call the server
-            fetch('http://localhost:5500/launch-cli')
-                .then(response => response.json())
-                .then(data => {
-                    alert('✅ CLI Application Launched!\n\nThe command-line interface will open in a new window...');
-                })
-                .catch(error => {
-                    alert('⚠️  Error launching application.\n\nMake sure:\n1. Node.js server is running (node server.js)\n2. You\'re accessing http://localhost:5500');
-                });
+            fetch(BACKEND_URL + '/launch-gui')
+                .then(r => r.json())
+                .then(d => alert('✅ GUI Launched!'))
+                .catch(e => alert('Error: Make sure server is running\nRun: node server.js'));
+        }
+
+        function launchCLI() {
+            if (window.location.hostname === 'saivallabha37.github.io') {
+                alert('📝 Quick Start:\n\n1. Clone repo: git clone https://github.com/saivallabha37/Library-Management-System\n2. Install Node.js if needed\n3. Run: npm install\n4. Start server: node server.js\n5. Open: http://localhost:5500\n6. Click buttons to launch!');
+                return;
+            }
+            
+            fetch(BACKEND_URL + '/launch-cli')
+                .then(r => r.json())
+                .then(d => alert('✅ CLI Launched!'))
+                .catch(e => alert('Error: Make sure server is running\nRun: node server.js'));
         }
 
         function goToRepo() {
             window.open('https://github.com/saivallabha37/Library-Management-System', '_blank');
-        }   if (window.location.hostname === 'saivallabha37.github.io') {
-                alert('📝 Instructions for Running Locally:\n\n1. Download the project from GitHub\n2. Open terminal in project folder\n3. Run: node server.js\n4. Open: http://localhost:5500\n5. Click "Launch Command Line Interface" button');
-                return;
-            }
-            
-            // If running locally, call the server
-            fetch('http://localhost:5500/launch-cli')
-                .then(response => response.json())
-                .then(data => {
-                    alert('✅ CLI Application Launched!\n\nThe command-line interface will open in a new window...');
-                })
-                .catch(error => {
-                    alert('⚠️  Error launching application.\n\nMake sure:\n1. Node.js server is running (node server.js)\n2. You\'re accessing http://localhost:5500');
-                });
         }
     </script>
 </body>
