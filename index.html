@@ -300,28 +300,32 @@
             ? 'http://localhost:5500' 
             : window.location.origin;
 
+        function isLocalhost() {
+            return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        }
+
         function launchGUI() {
-            if (window.location.hostname === 'saivallabha37.github.io') {
-                alert('📝 Quick Start:\n\n1. Clone repo: git clone https://github.com/saivallabha37/Library-Management-System\n2. Install Node.js if needed\n3. Run: npm install\n4. Start server: node server.js\n5. Open: http://localhost:5500\n6. Click buttons to launch!');
+            if (!isLocalhost()) {
+                alert('⚠️  GUI Launch Not Available\n\nThe GUI application can only launch from your local machine.\n\n📥 Quick Setup:\n\n1. Clone: git clone https://github.com/saivallabha37/Library-Management-System\n\n2. Install: npm install\n\n3. Start: node server.js\n\n4. Open: http://localhost:5500\n\n5. Click "Launch GUI Application"!\n\n✨ Your Java Swing GUI will open immediately!');
                 return;
             }
             
             fetch(BACKEND_URL + '/launch-gui')
                 .then(r => r.json())
-                .then(d => alert('✅ GUI Launched!'))
-                .catch(e => alert('Error: Make sure server is running\nRun: node server.js'));
+                .then(d => alert('✅ GUI Launched!\n\nThe Library Management System interface is starting...'))
+                .catch(e => alert('❌ Error: Make sure server is running\n\nRun: node server.js'));
         }
 
         function launchCLI() {
-            if (window.location.hostname === 'saivallabha37.github.io') {
-                alert('📝 Quick Start:\n\n1. Clone repo: git clone https://github.com/saivallabha37/Library-Management-System\n2. Install Node.js if needed\n3. Run: npm install\n4. Start server: node server.js\n5. Open: http://localhost:5500\n6. Click buttons to launch!');
+            if (!isLocalhost()) {
+                alert('⚠️  CLI Launch Not Available\n\nThe CLI application can only launch from your local machine.\n\n📥 Quick Setup:\n\n1. Clone: git clone https://github.com/saivallabha37/Library-Management-System\n\n2. Install: npm install\n\n3. Start: node server.js\n\n4. Open: http://localhost:5500\n\n5. Click "Launch Command Line Interface"!\n\n✨ Your CLI will open in a new terminal window!');
                 return;
             }
             
             fetch(BACKEND_URL + '/launch-cli')
                 .then(r => r.json())
-                .then(d => alert('✅ CLI Launched!'))
-                .catch(e => alert('Error: Make sure server is running\nRun: node server.js'));
+                .then(d => alert('✅ CLI Launched!\n\nThe command-line interface will open in a new terminal...'))
+                .catch(e => alert('❌ Error: Make sure server is running\n\nRun: node server.js'));
         }
 
         function goToRepo() {
